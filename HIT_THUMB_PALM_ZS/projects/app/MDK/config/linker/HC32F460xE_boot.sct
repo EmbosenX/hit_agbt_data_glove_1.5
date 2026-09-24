@@ -1,0 +1,46 @@
+; ****************************************************************
+; Scatter-Loading Description File  ——  boot / 直跑模式
+; ****************************************************************
+; 对应 MDK target: HIT_THUMB_PALM_ZS / app_boot （Define 含 APP_RUN_IN_BOOT_MODE=1）
+;
+; 用途: 生成不带 bootloader 的独立直跑固件，链接在 Flash 起始地址 0x00000000，
+;       便于 MDK 直接下载调试与产线单固件烧录。
+;
+; Flash 布局（本模式）:
+;   0x00000000 ~ 0x0007DFFF  Application（504KB，本文件的加载/执行区）
+;   0x0007E000 ~ 0x0007FFFF  标定区 8KB（标定表掉电存储，见 bsp/hc_flash.h
+;                            的 HC_FLASH_CALIB_ADDR；APP 代码/数据切勿落入，
+;                            否则标定表擦写会破坏固件）
+;
+; 与 app 模式（HC32F460xE.sct, 基址 0x00008000）的差异:
+;   1. 基址为 0x00000000，长度 0x0007E000，末尾 8KB 标定区保留不被代码占用。
+;   2. 本模式下无需在代码里写死向量表基址：main() 取链接符
+;      Image$$ER_IROM1$$Base 写入 SCB->VTOR（此处即 0x00000000）。
+;   3. ICG（hc32_ll_icg.c 的 __attribute__((at(0x400)))）在 app 模式下是独立
+;      load region，在 boot 模式下会并入 ER_IROM1（0x400 落在本区内），
+;      因此本镜像只有一个 load region，fromelf 导出 bin 时按单 region 处理
+;      （generate_bin.bat 已兼容）。
+;   4. IAP 相关代码照旧编译，但本模式下没有 bootloader，且代码会占用
+;      0x00006000~0x00007FFF 的 IAP 标志扇区（0x7FF4/0x7FF8/0x7FFC），
+;      故 IAP 升级功能在本模式实际不可用。
+;
+; 注意: MDK 下载算法配置为 -FS00000000 -FL07E000，若选择 "Erase Full Chip"
+;       会一并擦掉标定区；保持默认 "Erase Sectors" 不受影响。
+LR_IROM1 0x00000000 0x0007E000  {    ; load region size_region
+    ER_IROM1 0x00000000 0x0007E000  {  ; load address = execution address
+        *.o (RESET, +First)
+        *(InRoot$$Sections)
+        .ANY (+RO)
+        .ANY (+XO)
+    }
+    RW_IRAM1 0x1FFF8000 UNINIT 0x00000008  {  ; RW data
+        *(.bss.noinit)
+    }
+    RW_IRAM2 0x1FFF8008 0x0002EFF8  {  ; RW data
+        .ANY (+RW +ZI)
+        .ANY (RAMCODE)
+    }
+    RW_IRAMB 0x200F0000 0x00001000  {  ; RW data
+        .ANY (+RW +ZI)
+    }
+}

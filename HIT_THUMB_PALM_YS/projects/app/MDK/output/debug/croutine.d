@@ -1,0 +1,14 @@
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\croutine.c
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\include\FreeRTOS.h
+.\output\debug\croutine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\debug\croutine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\FreeRTOSConfig.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\include\projdefs.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\include\portable.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\include\deprecated_definitions.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\include\mpu_wrappers.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\include\task.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\include\list.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\include\croutine.h
+.\output\debug\croutine.o: ..\..\..\midwares\3rd_party\FreeRTOS\Source\include\list.h

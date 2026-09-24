@@ -1,0 +1,41 @@
+; ****************************************************************
+; Scatter-Loading Description File  ——  app 模式（带 bootloader）
+; ****************************************************************
+; 对应 MDK target: HIT_THUMB_PALM_ZS / app （Define 不含 APP_RUN_IN_BOOT_MODE）
+; 另一模式: target app_boot 使用同目录的 HC32F460xE_boot.sct（基址 0x00000000）。
+; 切换方式: 在 uVision 的 target 下拉框选择 app / app_boot 后重新 Build，
+;           中断向量表基址由 main() 取链接符 Image$$ER_IROM1$$Base 自动跟随 sct，
+;           无需（也禁止）在代码里手工改写 VTOR 地址常量。
+;
+; Flash 布局（与 HIT_IAP_BOOT_UART 的 IAP_BOOT_SIZE=0x8000 对齐）：
+;   0x00000000 ~ 0x00005FFF  Bootloader 代码（boot 工程，禁止占用）
+;   0x00006000 ~ 0x00007FFF  IAP 标志扇区（0x7FF4/0x7FF8/0x7FFC，禁止占用）
+;   0x00008000 ~ 0x0007DFFF  Application（472KB，本文件的加载/执行区）
+;   0x0007E000 ~ 0x0007FFFF  标定区 8KB（标定表掉电存储，见 bsp/hc_flash.h
+;                            的 HC_FLASH_CALIB_ADDR；APP 代码/数据切勿落入，
+;                            否则标定表擦写会破坏固件）
+;
+; APP 位于 0x00008000，main() 会把中断向量表重定位到本文件的链接基址
+; （取 Image$$ER_IROM1$$Base；system_hc32f460.c 的 VECT_TAB_OFFSET 默认为 0x0），
+; 否则中断全部跑飞。Debug 版还会在基址与 target 模式宏不一致时停机自检。
+;
+; 注意：MDK 下载算法配置为 -FS00008000 -FL078000，若选择 "Erase Full Chip"
+;       会一并擦掉标定区；保持默认 "Erase Sectors" 不受影响。
+LR_IROM1 0x00008000 0x00076000  {    ; load region size_region
+    ER_IROM1 0x00008000 0x00076000  {  ; load address = execution address
+        *.o (RESET, +First)
+        *(InRoot$$Sections)
+        .ANY (+RO)
+        .ANY (+XO)
+    }
+    RW_IRAM1 0x1FFF8000 UNINIT 0x00000008  {  ; RW data
+        *(.bss.noinit)
+    }
+    RW_IRAM2 0x1FFF8008 0x0002EFF8  {  ; RW data
+        .ANY (+RW +ZI)
+        .ANY (RAMCODE)
+    }
+    RW_IRAMB 0x200F0000 0x00001000  {  ; RW data
+        .ANY (+RW +ZI)
+    }
+}

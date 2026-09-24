@@ -1,0 +1,17 @@
+.\output\debug\iap_boot.o: ..\..\..\bsp\iap_boot.c
+.\output\debug\iap_boot.o: ..\..\..\bsp\iap_boot.h
+.\output\debug\iap_boot.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\debug\iap_boot.o: ..\..\..\bsp\iap_flash.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\hc32_ll_driver\inc\hc32_ll_efm.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\hc32_ll_driver\inc\hc32_ll_def.h
+.\output\debug\iap_boot.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\cmsis\Device\HDSC\hc32f4xx\Include\hc32f4xx.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\cmsis\Device\HDSC\hc32f4xx\Include\hc32f460.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\cmsis\Include\core_cm4.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\cmsis\Include\cmsis_version.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\cmsis\Include\cmsis_compiler.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\cmsis\Include\cmsis_armcc.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\cmsis\Include\mpu_armv7.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\cmsis\Device\HDSC\hc32f4xx\Include\system_hc32f460.h
+.\output\debug\iap_boot.o: ..\..\..\drivers\cmsis\Device\HDSC\hc32f4xx\Include\hc32f4xx.h
+.\output\debug\iap_boot.o: ..\..\..\source\hc32f4xx_conf.h

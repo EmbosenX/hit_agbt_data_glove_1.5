@@ -1,0 +1,16 @@
+.\output\debug\modem.o: ../../../../../../midwares/hc32/iap/modem/modem.c
+.\output\debug\modem.o: ../../../../../../midwares/hc32/iap/modem/modem.h
+.\output\debug\modem.o: ../../../../../../drivers/hc32_ll_driver/inc/hc32_ll_crc.h
+.\output\debug\modem.o: ../../../../../../drivers/hc32_ll_driver/inc/hc32_ll_def.h
+.\output\debug\modem.o: C:\Users\10142\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\debug\modem.o: C:\Users\10142\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\debug\modem.o: ../../../../../../drivers/cmsis/Device/HDSC/hc32f4xx/Include/hc32f4xx.h
+.\output\debug\modem.o: ../../../../../../drivers/cmsis/Device/HDSC/hc32f4xx/Include/hc32f460.h
+.\output\debug\modem.o: ../../../../../../drivers/cmsis/Include/core_cm4.h
+.\output\debug\modem.o: ../../../../../../drivers/cmsis/Include/cmsis_version.h
+.\output\debug\modem.o: ../../../../../../drivers/cmsis/Include/cmsis_compiler.h
+.\output\debug\modem.o: ../../../../../../drivers/cmsis/Include/cmsis_armcc.h
+.\output\debug\modem.o: ../../../../../../drivers/cmsis/Include/mpu_armv7.h
+.\output\debug\modem.o: ../../../../../../drivers/cmsis/Device/HDSC/hc32f4xx/Include/system_hc32f460.h
+.\output\debug\modem.o: ../../../../../../drivers/cmsis/Device/HDSC/hc32f4xx/Include/hc32f4xx.h
+.\output\debug\modem.o: ../source/hc32f4xx_conf.h
